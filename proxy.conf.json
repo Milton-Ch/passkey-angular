@@ -1,0 +1,6 @@
+{
+  "/jans-fido2": {
+    "target": "https://milton-ch-healthy-gazelle.gluu.info/",
+    "secure": false
+  }
+}
