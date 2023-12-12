@@ -1,10 +1,12 @@
 {
   "name": "passkey-angular",
   "version": "0.0.0",
+  "license": "Apache-2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
+    "build:passkey": "ng build --base-href /passkey/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -21,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
     "rxjs": "~7.8.0",
+    "tailwindcss": "^3.3.6",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },

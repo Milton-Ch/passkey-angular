@@ -17,6 +17,9 @@ declare const webauthn: any;
 })
 export class AppComponent implements OnInit {
 
+  assertionResponse!: string;
+  assertionError!: string;
+
   constructor(private fido2Service: Fido2Service) { }
 
   ngOnInit() {
@@ -26,17 +29,21 @@ export class AppComponent implements OnInit {
     this.fido2Service.options('milton1')
       .subscribe({
         next: (next => {
-          console.log(next.body);
-          const stringRequest = JSON.stringify(next.body);
-          webauthn.getAssertion(stringRequest)
+          console.log('Request: ' + next.body);
+          // const stringRequest = JSON.stringify(next.body);
+          // console.log('String request: ' + stringRequest);
+          // webauthn.getAssertion(stringRequest)
+          webauthn.getAssertion(next.body)
             .then((data: any) => {
-              console.info('Get assertion completed: ' + JSON.stringify(webauthn.responseToObject(data)));
+              this.assertionResponse = JSON.stringify(webauthn.responseToObject(data));
+              console.info('Get assertion completed: ' + this.assertionResponse);
               // setStatus("Please wait...");
               // document.getElementById("tokenResponse").value = JSON.stringify(webauthn.responseToObject(data))
               // document.forms[0].submit()
             })
             .catch((err: any) => {
-              console.error('Failed to get assertion: ' + JSON.stringify(err));
+              this.assertionError = JSON.stringify(err);
+              console.error('Failed to get assertion: ' + this.assertionError);
               // let name = err.name
               // setStatus("")
               // let message = ""

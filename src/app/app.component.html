@@ -1,3 +1,12 @@
-<div style="text-align: center; padding-top: 100px">
+<div class="container mx-auto px-4 py-20">
   <button mat-raised-button color="primary" (click)="onSignIn()">SignIn</button>
+
+  <div class="py-5"></div>
+
+  @if (assertionResponse) {
+    <div class="text-gray-500 break-all text-xl wrap">{{ assertionResponse }}</div>
+  }
+  @if (assertionError) {
+    <div class="text-red-400 break-all text-xl">{{ assertionError }}</div>
+  }
 </div>
