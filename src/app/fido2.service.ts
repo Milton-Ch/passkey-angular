@@ -9,10 +9,20 @@ export class Fido2Service {
 
   constructor(private http: HttpClient) { }
 
-  options(username: string): Observable<HttpResponse<any>> {
-    const requestBody = {
-      username: username
-    }
+  assertionOptions(requestBody: any): Observable<HttpResponse<any>> {
     return this.http.post<any>('/jans-fido2/restv1/assertion/options', requestBody, { observe: 'response' });
+  }
+  assertionResult(requestBody: any): Observable<HttpResponse<any>> {
+    return this.http.post<any>('/jans-fido2/restv1/assertion/result', requestBody, { observe: 'response' });
+  }
+
+  /* REGISTER */
+
+  attestationOptions(requestBody: any): Observable<HttpResponse<any>> {
+    return this.http.post<any>('/jans-fido2/restv1/attestation/options', requestBody, { observe: 'response' });
+  }
+
+  attestationResult(requestBody: any): Observable<HttpResponse<any>> {
+    return this.http.post<any>('/jans-fido2/restv1/attestation/result', requestBody, { observe: 'response' });
   }
 }

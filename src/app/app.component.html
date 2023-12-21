@@ -1,12 +1,97 @@
-<div class="container mx-auto px-4 py-20">
-  <button mat-raised-button color="primary" (click)="onSignIn()">SignIn</button>
+<div class="container mx-auto px-4 py-10 bg-red">
+  <div class="flex flex-col sm:flex-row gap-5">
+    <div class="flex flex-col card sm:w-1/2 gap-y-3">
+      <div class="text-2xl text-center font-bold">Attestation</div>
+      <div class="grid grid-cols-1">
+        <div>
+          <mat-form-field class="w-full">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" [(ngModel)]="email">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="w-full">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" [(ngModel)]="name">
+          </mat-form-field>
+        </div>
+      </div>
 
-  <div class="py-5"></div>
+      <div class="flex flex-col sm:flex-row gap-5">
+        <div class="sm:w-1/2">
+          <mat-form-field class="w-full">
+            <mat-label>User verification</mat-label>
+            <mat-select [(ngModel)]="selectedUserVerification">
+              @for (item of userVerificationList;track item) {
+                <mat-option [value]="item">{{ item }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="sm:w-1/2">
+          <mat-form-field class="w-full">
+            <mat-label>Discoverable Credential</mat-label>
+            <mat-select [(ngModel)]="selectedResidentKey">
+              @for (item of userVerificationList;track item) {
+                <mat-option [value]="item">{{ item }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
 
-  @if (assertionResponse) {
-    <div class="text-gray-500 break-all text-xl wrap">{{ assertionResponse }}</div>
-  }
-  @if (assertionError) {
-    <div class="text-red-400 break-all text-xl">{{ assertionError }}</div>
-  }
+      <div class="text-center">
+        <button class="w-60" mat-raised-button color="primary" (click)="onRegister()">Register</button>
+      </div>
+
+      <div class="grid grid-cols-1 gap-y-3">
+        @if (attestation1) {
+          <div class="text-gray-500 break-all wrap">{{ attestation1 }}</div>
+        }
+        @if (attestation2) {
+          <div class="text-gray-500 break-all wrap">{{ attestation2 }}</div>
+        }
+        @if (attestation3) {
+          <div class="text-green-500 break-all wrap">{{ attestation3 }}</div>
+        }
+        @if (attestationError) {
+          <div class="text-red-500 break-all wrap">{{ attestationError }}</div>
+        }
+      </div>
+    </div>
+
+    <div class="flex flex-col card sm:w-1/2 gap-y-3">
+      <div class="text-2xl text-center font-bold">Assertion</div>
+
+      <div>
+        <mat-form-field class="w-full">
+          <mat-label>User verification</mat-label>
+          <mat-select [(ngModel)]="selectedUserVerificationAssertion">
+            @for (item of userVerificationList;track item) {
+              <mat-option [value]="item">{{ item }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="text-center">
+        <button class="w-60" mat-raised-button color="primary" (click)="onSignIn()">SignIn with PassKey</button>
+      </div>
+
+      <div class="pt-5 grid grid-cols-1 gap-y-3">
+        @if (assertion1) {
+          <div class="text-gray-500 break-all wrap">{{ assertion1 }}</div>
+        }
+        @if (assertion2) {
+          <div class="text-gray-500 break-all wrap">{{ assertion2 }}</div>
+        }
+        @if (assertion3) {
+          <div class="text-green-500 break-all wrap">{{ assertion3 }}</div>
+        }
+        @if (assertionError) {
+          <div class="text-red-500 break-all wrap">{{ assertionError }}</div>
+        }
+      </div>
+    </div>
+  </div>
 </div>
